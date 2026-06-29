@@ -1,43 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/marketing.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>SMA</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Media Analyzer</title>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Advanced Tailwind Config to match authentic Shadcn tokens (Zinc/Neutral palette) -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            border: 'hsl(240 5.9% 90%)',
+            input: 'hsl(240 5.9% 90%)',
+            ring: 'hsl(240 5.9% 10%)',
+            background: 'hsl(240 4.8% 95.9% / 0.5)', /* Light grey backing like Shadcn docs */
+            foreground: 'hsl(240 10% 3.9%)',
+            card: {
+              DEFAULT: 'hsl(0 0% 100%)',
+              foreground: 'hsl(240 10% 3.9%)'
+            },
+            primary: {
+              DEFAULT: 'hsl(240 5.9% 10%)',
+              foreground: 'hsl(0 0% 98%)',
+            },
+            muted: {
+              DEFAULT: 'hsl(240 4.8% 95.9%)',
+              foreground: 'hsl(240 3.8% 46.1%)',
+            },
+          },
+          borderRadius: {
+            lg: '0.5rem',
+            md: 'calc(0.5rem - 2px)',
+            sm: 'calc(0.5rem - 4px)',
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    body {
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+  </style>
+</head>
+
+<body class="bg-[#fcfcfc] text-foreground antialiased min-h-screen flex items-center justify-center p-4 md:p-8">
+
+  <!-- Main Component: Shadcn Card Container -->
+  <div class="w-full max-w-lg rounded-xl border border-zinc-200 bg-white shadow-sm transition-all duration-200">
+    
+    <!-- Card Header -->
+    <div class="flex flex-col space-y-1.5 p-6 pb-4">
+      <h1 class="text-xl font-semibold tracking-tight text-zinc-900">
+        Social Media Analyzer
+      </h1>
+      <p class="text-sm text-zinc-500">
+        Analyze real-time search trends and video data from YouTube.
+      </p>
+    </div>
+
+    <!-- Card Content -->
+    <div class="p-6 pt-0 space-y-4">
+      
+      <!-- Input Group -->
+      <div class="space-y-2">
+        <div class="flex space-x-2">
+          <!-- Shadcn Style Input -->
+          <input 
+            type="text" 
+            id="keyword" 
+            placeholder="Search YouTube (e.g. AI, Football)"
+            class="flex h-10 w-full rounded-md border border-zinc-200 bg-transparent px-3 py-2 text-sm ring-offset-white placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-shadow"
+          />
+
+          <!-- Shadcn Style Primary Button -->
+          <button 
+            onclick="analyze()"
+            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-zinc-900 text-zinc-50 hover:bg-zinc-900/90 active:scale-[0.98] h-10 px-4 py-2 transition-transform"
+          >
+            Analyze
+          </button>
+        </div>
+
+        <!-- Inline Example / Quick Links -->
+        <p class="text-xs text-zinc-400">
+          Try searching for <span class="font-medium text-zinc-600 underline underline-offset-2 cursor-pointer hover:text-zinc-900">MrBeast</span>, <span class="font-medium text-zinc-600 underline underline-offset-2 cursor-pointer hover:text-zinc-900">AI</span>, or <span class="font-medium text-zinc-600 underline underline-offset-2 cursor-pointer hover:text-zinc-900">Tech</span>.
+        </p>
+      </div>
+
+      <!-- Loading State: Upgraded to Shadcn-style horizontal spinner -->
+      <div id="loading" class="hidden items-center justify-center space-x-2 py-4 text-sm text-zinc-500 transition-all">
+        <svg class="animate-spin h-4 w-4 text-zinc-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <span>Analyzing data channels...</span>
+      </div>
+
+      <!-- Results Container: Separated clearly with a subtle divider line -->
+      <div id="results" class="empty:hidden border-t border-zinc-100 pt-4 space-y-3 animate-in fade-in-50 duration-200">
+        <!-- 
+          Pro-tip for js/script.js: To keep the theme uniform when inserting dynamic UI nodes via JS, 
+          style your generated results using classes like:
+          "p-4 rounded-lg bg-zinc-50 border border-zinc-100 text-sm"
+        -->
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
 </html>
