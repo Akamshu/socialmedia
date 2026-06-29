@@ -1,20 +1,430 @@
+/* ===========================
+   Google Font
+=========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
 
-background:#171d2a;
-color:white;
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+
+    background:
+        radial-gradient(circle at top left,#e0e7ff 0%,transparent 45%),
+        radial-gradient(circle at bottom right,#c7d2fe 0%,transparent 45%),
+        linear-gradient(135deg,#fafafa,#eef2ff);
+
+    min-height:100vh;
+
+    position:relative;
+
+}
+
+
+/* ===========================
+      Animated Wave Background
+=========================== */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background-image:
+
+url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900' viewBox='0 0 1600 900'%3E%3Cg fill='none' stroke='%236366f1' stroke-opacity='.10' stroke-width='2'%3E%3Cpath d='M0 120 C200 40 400 200 600 120 S1000 40 1200 120 S1400 200 1600 120'/%3E%3Cpath d='M0 220 C200 140 400 300 600 220 S1000 140 1200 220 S1400 300 1600 220'/%3E%3Cpath d='M0 320 C200 240 400 400 600 320 S1000 240 1200 320 S1400 400 1600 320'/%3E%3Cpath d='M0 420 C200 340 400 500 600 420 S1000 340 1200 420 S1400 500 1600 420'/%3E%3C/g%3E%3C/svg%3E");
+
+    background-size:cover;
+
+    animation:waveMove 25s linear infinite;
+
+    pointer-events:none;
+
+    z-index:-3;
+
+}
+
+
+/* ===========================
+      Glow Layer
+=========================== */
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+
+radial-gradient(circle at 20% 20%,rgba(99,102,241,.20),transparent 30%),
+
+radial-gradient(circle at 80% 80%,rgba(79,70,229,.25),transparent 35%),
+
+radial-gradient(circle at 70% 10%,rgba(59,130,246,.15),transparent 30%);
+
+    filter:blur(70px);
+
+    animation:floatGlow 18s ease-in-out infinite alternate;
+
+    pointer-events:none;
+
+    z-index:-2;
+
+}
+
+
+/* ===========================
+      Floating Particles
+=========================== */
+
+.particles{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:-1;
+
+}
+
+.particles span{
+
+    position:absolute;
+
+    display:block;
+
+    width:6px;
+
+    height:6px;
+
+    border-radius:50%;
+
+    background:#6366f1;
+
+    opacity:.25;
+
+    animation:floatParticle linear infinite;
+
+}
+
+/* Random positions */
+
+.particles span:nth-child(1){
+
+left:8%;
+top:18%;
+animation-duration:18s;
+}
+
+.particles span:nth-child(2){
+
+left:22%;
+top:72%;
+animation-duration:24s;
+}
+
+.particles span:nth-child(3){
+
+left:40%;
+top:40%;
+animation-duration:20s;
+}
+
+.particles span:nth-child(4){
+
+left:62%;
+top:18%;
+animation-duration:26s;
+}
+
+.particles span:nth-child(5){
+
+left:85%;
+top:35%;
+animation-duration:16s;
+}
+
+.particles span:nth-child(6){
+
+left:72%;
+top:82%;
+animation-duration:22s;
+}
+
+.particles span:nth-child(7){
+
+left:30%;
+top:90%;
+animation-duration:19s;
+}
+
+.particles span:nth-child(8){
+
+left:90%;
+top:12%;
+animation-duration:27s;
+}
+
+
+/* ===========================
+      Glass Card
+=========================== */
+
+.main-card{
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    background:rgba(255,255,255,.82);
+
+    border:1px solid rgba(255,255,255,.6);
+
+    box-shadow:
+
+0 20px 60px rgba(99,102,241,.10),
+
+0 8px 30px rgba(0,0,0,.08);
+
+}
+
+
+/* ===========================
+      Input
+=========================== */
+
+input{
+
+transition:.25s;
+
+}
+
+input:focus{
+
+box-shadow:
+
+0 0 0 4px rgba(99,102,241,.15);
+
+}
+
+
+/* ===========================
+      Button
+=========================== */
+
+button{
+
+transition:.3s;
+
+}
+
+button:hover{
+
+transform:translateY(-2px);
+
+box-shadow:
+
+0 10px 25px rgba(0,0,0,.15);
+
+}
+
+
+/* ===========================
+      Result Cards
+=========================== */
+
+.result-card{
+
+background:rgba(255,255,255,.85);
+
+backdrop-filter:blur(12px);
+
+border:1px solid rgba(255,255,255,.6);
+
+transition:.3s;
+
+}
+
+.result-card:hover{
+
+transform:translateY(-6px);
+
+box-shadow:
+
+0 25px 40px rgba(99,102,241,.15);
+
+}
+
+
+/* ===========================
+      Loading Spinner
+=========================== */
+
+.loading-ring{
+
+animation:spin 1s linear infinite;
+
+}
+
+
+/* ===========================
+      Scrollbar
+=========================== */
+
+::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#6366f1;
+
+border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#f3f4f6;
+
+}
+
+
+/* ===========================
+      Animations
+=========================== */
+
+@keyframes waveMove{
+
+0%{
+
+transform:translateX(0);
+
+}
+
+50%{
+
+transform:translateX(-60px);
+
+}
+
+100%{
+
+transform:translateX(0);
+
+}
+
+}
+
+
+@keyframes floatGlow{
+
+0%{
+
+transform:translateY(0) scale(1);
+
+}
+
+100%{
+
+transform:translateY(-40px) scale(1.2);
+
+}
+
+}
+
+
+@keyframes floatParticle{
+
+0%{
+
+transform:translateY(0);
+
+opacity:.2;
+
+}
+
+50%{
+
+opacity:.6;
+
+}
+
+100%{
+
+transform:translateY(-120px);
+
+opacity:0;
+
+}
+
+}
+
+
+@keyframes spin{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+
+/* ===========================
+      Fade In
+=========================== */
+
+.fade-up{
+
+animation:fadeUp .6s ease;
+
+}
+
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(25px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
 }
 
 .container{
 
 width:90%;
-max-width:1200px;
+max-width:1000px;
 margin:auto;
 padding:50px 20px;
 }
@@ -26,38 +436,6 @@ font-size:60px;
 margin-bottom:60px;
 }
 
-.searchBox{
-
-display:flex;
-justify-content:center;
-gap:10px;
-}
-
-input{
-
-width:450px;
-padding:18px;
-font-size:18px;
-border-radius:8px;
-border:none;
-outline:none;
-}
-
-button{
-
-padding:18px 35px;
-font-size:18px;
-background:#4f8cff;
-color:white;
-border:none;
-border-radius:8px;
-cursor:pointer;
-}
-
-button:hover{
-
-background:#296ef6;
-}
 
 .example{
 
@@ -66,13 +444,6 @@ margin-top:15px;
 color:#aaa;
 }
 
-#loading{
-
-display:none;
-text-align:center;
-margin-top:30px;
-font-size:22px;
-}
 
 #results{
 
@@ -154,4 +525,40 @@ border-radius:20px;
 display:inline-block;
 
 margin-bottom:15px;
+}
+
+.main-card {
+    animation: fadeUp .8s ease;
+    transition: .35s;
+}
+
+.main-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.12),
+        0 10px 30px rgba(239,68,68,.12);
+}
+
+#results {
+    min-height: 250px;
+    transition: .3s;
+}
+
+button {
+    letter-spacing: .3px;
+}
+
+input::placeholder {
+    color: #a1a1aa;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

@@ -5,12 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Social Media Analyzer</title>
+<link rel="stylesheet" href="css/style.css">
 
   <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+  
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -60,69 +61,143 @@
 </head>
 
 <body class="bg-[#fcfcfc] text-foreground antialiased min-h-screen flex items-center justify-center p-4 md:p-8">
-
+<div class="particles">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
   <!-- Main Component: Shadcn Card Container -->
-  <div class="w-full max-w-lg rounded-xl border border-zinc-200 bg-white shadow-sm transition-all duration-200">
-    
-    <!-- Card Header -->
-    <div class="flex flex-col space-y-1.5 p-6 pb-4">
-      <h1 class="text-xl font-semibold tracking-tight text-zinc-900">
-        Social Media Analyzer
-      </h1>
-      <p class="text-sm text-zinc-500">
-        Analyze real-time search trends and video data from YouTube.
-      </p>
-    </div>
+<div class="main-card w-full max-w-5xl overflow-hidden rounded-3xl border border-white/40 bg-white/80 backdrop-blur-xl shadow-2xl">
 
-    <!-- Card Content -->
-    <div class="p-6 pt-0 space-y-4">
-      
-      <!-- Input Group -->
-      <div class="space-y-2">
-        <div class="flex space-x-2">
-          <!-- Shadcn Style Input -->
-          <input 
-            type="text" 
-            id="keyword" 
-            placeholder="Search YouTube (e.g. AI, Football)"
-            class="flex h-10 w-full rounded-md border border-zinc-200 bg-transparent px-3 py-2 text-sm ring-offset-white placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-shadow"
-          />
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-red-600 via-red-500 to-orange-500 px-8 py-8 text-white">
 
-          <!-- Shadcn Style Primary Button -->
-          <button 
-            onclick="analyze()"
-            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-zinc-900 text-zinc-50 hover:bg-zinc-900/90 active:scale-[0.98] h-10 px-4 py-2 transition-transform"
-          >
-            Analyze
-          </button>
+        <div class="flex items-center gap-4">
+
+            <div class="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8.051 1.999h-.003C3.5 2 1 2.3 1 8s2.5 6 7.048 6h.003C12.5 14 15 13.7 15 8s-2.5-6-6.949-6.001zM6.5 10.5v-5l4 2.5-4 2.5z"/>
+                </svg>
+
+            </div>
+
+            <div>
+
+                <h1 class="text-4xl font-bold">
+                    Social Media Analyzer
+                </h1>
+
+                <p class="text-red-100 mt-1">
+                    Discover the highest-performing YouTube videos using AI-powered analytics.
+                </p>
+
+            </div>
+
         </div>
 
-        <!-- Inline Example / Quick Links -->
-        <p class="text-xs text-zinc-400">
-          Try searching for <span class="font-medium text-zinc-600 underline underline-offset-2 cursor-pointer hover:text-zinc-900">MrBeast</span>, <span class="font-medium text-zinc-600 underline underline-offset-2 cursor-pointer hover:text-zinc-900">AI</span>, or <span class="font-medium text-zinc-600 underline underline-offset-2 cursor-pointer hover:text-zinc-900">Tech</span>.
+    </div>
+
+    <!-- Body -->
+    <div class="p-8">
+
+        <!-- Search -->
+        <div class="flex flex-col md:flex-row gap-4">
+
+            <div class="relative flex-1">
+
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400"
+                     width="18"
+                     height="18"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     viewBox="0 0 24 24">
+
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+
+                </svg>
+
+                <input
+                    id="keyword"
+                    type="text"
+                    placeholder="Search YouTube videos..."
+                    class="w-full h-14 rounded-xl border border-zinc-200 bg-white pl-12 pr-4 text-base shadow-sm focus:ring-4 focus:ring-red-200 focus:border-red-500 transition"/>
+
+            </div>
+
+            <button
+                onclick="analyze()"
+                class="h-14 px-8 rounded-xl bg-gradient-to-r from-red-600 to-orange-500 text-white font-semibold shadow-lg hover:scale-105 hover:shadow-xl transition">
+
+                Analyze
+
+            </button>
+
+        </div>
+
+        <p class="mt-4 text-sm text-zinc-500">
+
+            Popular searches:
+
+            <span class="font-semibold text-red-600">MrBeast</span> •
+
+            <span class="font-semibold text-red-600">AI</span> •
+
+            <span class="font-semibold text-red-600">Football</span> •
+
+            <span class="font-semibold text-red-600">Technology</span>
+
         </p>
-      </div>
 
-      <!-- Loading State: Upgraded to Shadcn-style horizontal spinner -->
-      <div id="loading" class="hidden items-center justify-center space-x-2 py-4 text-sm text-zinc-500 transition-all">
-        <svg class="animate-spin h-4 w-4 text-zinc-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
-        <span>Analyzing data channels...</span>
-      </div>
+        <!-- Loading -->
+        <div id="loading"
+             class="hidden items-center justify-center gap-3 py-10">
 
-      <!-- Results Container: Separated clearly with a subtle divider line -->
-      <div id="results" class="empty:hidden border-t border-zinc-100 pt-4 space-y-3 animate-in fade-in-50 duration-200">
-        <!-- 
-          Pro-tip for js/script.js: To keep the theme uniform when inserting dynamic UI nodes via JS, 
-          style your generated results using classes like:
-          "p-4 rounded-lg bg-zinc-50 border border-zinc-100 text-sm"
-        -->
-      </div>
+            <div class="w-8 h-8 border-4 border-red-200 border-t-red-600 rounded-full animate-spin"></div>
+
+            <span class="text-zinc-600 font-medium">
+
+                Analyzing YouTube videos...
+
+            </span>
+
+        </div>
+
+        <!-- Results -->
+        <div
+            id="results"
+            class="mt-8 rounded-2xl border border-zinc-100 bg-zinc-50 p-6 space-y-6">
+
+        </div>
 
     </div>
-  </div>
+
+    <!-- Footer -->
+    <div class="border-t border-zinc-100 bg-zinc-50 px-8 py-4 flex justify-between text-sm text-zinc-500">
+
+        <span>
+
+            © 2026 Social Media Analyzer
+
+        </span>
+
+        <span>
+
+            Powered by YouTube Data API
+
+        </span>
+
+    </div>
+
+</div>
 
   <script src="js/script.js"></script>
 </body>
