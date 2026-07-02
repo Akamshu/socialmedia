@@ -5,17 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Social Media Analyzer</title>
-<link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 
-  <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Advanced Tailwind Config to match authentic Shadcn tokens (Zinc/Neutral palette) -->
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -71,10 +68,34 @@
     <span></span>
     <span></span>
 </div>
-  <!-- Main Component: Shadcn Card Container -->
-<div class="main-card w-full max-w-5xl overflow-hidden rounded-3xl border border-white/40 bg-white/80 backdrop-blur-xl shadow-2xl">
 
-    <!-- Header -->
+  <div id="welcomeModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-300 opacity-100">
+    <div class="bg-white rounded-2xl max-w-sm w-full border border-zinc-100 shadow-2xl overflow-hidden transform scale-100 transition-transform duration-300">
+      <div class="h-2 bg-gradient-to-r from-red-600 via-red-500 to-orange-500"></div>
+      
+      <div class="p-6 text-center">
+        <div class="w-12 h-12 mx-auto rounded-full bg-red-50 text-red-600 flex items-center justify-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 21l8.904-4.473L21 9l-3.343-3.343-7.844 10.247zm0 0l2.354 2.354M12 4v1M18 4v1M6 4v1M4 12H3M4 18H3M4 6H3" />
+          </svg>
+        </div>
+
+        <h3 class="text-xl font-bold text-zinc-900">Welcome</h3>
+        <p class="text-zinc-500 mt-2 text-sm">
+          Designed by <span class="font-semibold text-zinc-800">JOHN UCHECHE (ST/SWD/HND/24/025)</span>
+        </p>
+
+        <button 
+          onclick="closeModal()" 
+          class="mt-6 w-full py-2.5 px-4 bg-zinc-900 hover:bg-zinc-800 text-white font-medium rounded-xl transition shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-zinc-900">
+          Get Started
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-card w-full max-w-5xl overflow-hidden rounded-3xl border border-white/40 bg-white/80 backdrop-blur-xl shadow-2xl">
+
     <div class="bg-gradient-to-r from-red-600 via-red-500 to-orange-500 px-8 py-8 text-white">
 
         <div class="flex items-center gap-4">
@@ -103,10 +124,8 @@
 
     </div>
 
-    <!-- Body -->
     <div class="p-8">
 
-        <!-- Search -->
         <div class="flex flex-col md:flex-row gap-4">
 
             <div class="relative flex-1">
@@ -157,7 +176,6 @@
 
         </p>
 
-        <!-- Loading -->
         <div id="loading"
              class="hidden items-center justify-center gap-3 py-10">
 
@@ -171,7 +189,6 @@
 
         </div>
 
-        <!-- Results -->
         <div
             id="results"
             class="mt-8 rounded-2xl border border-zinc-100 bg-zinc-50 p-6 space-y-6">
@@ -180,7 +197,6 @@
 
     </div>
 
-    <!-- Footer -->
     <div class="border-t border-zinc-100 bg-zinc-50 px-8 py-4 flex justify-between text-sm text-zinc-500">
 
         <span>
@@ -200,5 +216,16 @@
 </div>
 
   <script src="js/script.js"></script>
+  
+  <script>
+    function closeModal() {
+      const modal = document.getElementById('welcomeModal');
+      // Fade out transition
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        modal.remove(); // Completely clear from DOM after transition
+      }, 300);
+    }
+  </script>
 </body>
 </html>
